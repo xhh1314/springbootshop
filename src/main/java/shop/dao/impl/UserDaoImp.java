@@ -1,0 +1,43 @@
+package shop.dao.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
+
+import shop.bean.User;
+import shop.dao.UserDao;
+import shop.dao.impl.jparepository.UserRepository;
+@Repository("userDao")
+public class UserDaoImp implements UserDao {
+	@Autowired
+	private UserRepository userRepository;
+
+	
+	@Override
+	public User findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findByUuid(String uuid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(User user) {
+		// TODO Auto-generated method stub
+		Assert.notNull(user.getName(),"姓名不能为空！");
+		Assert.notNull(user.getEmail(),"邮箱不能为空！");
+		Assert.notNull(user.getPassword(),"密码不能为空！");
+		userRepository.save(user);
+	}
+
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
