@@ -1,12 +1,15 @@
 package shop.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
-public class Subdivide {
+public class Subdivide implements Serializable{
+	private static final long serialVersionUID = 5180958664404841741L;
 	private String id;
 	private String uuid;
 	private String name;

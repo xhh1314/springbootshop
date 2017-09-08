@@ -6,5 +6,9 @@ import org.springframework.stereotype.Repository;
 import shop.bean.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
+
+	User findUserByEmail(String email);
+
+	User findUserByUuid(String uuid);
 	
 }

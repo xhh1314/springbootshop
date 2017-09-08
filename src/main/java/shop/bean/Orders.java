@@ -1,5 +1,6 @@
 package shop.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Orders {
+public class Orders implements Serializable{
+	private static final long serialVersionUID = 4025200169942039793L;
 	private String uuid;
 	private String ordercode;
 	private String address;
@@ -54,6 +56,7 @@ public class Orders {
 		this.address = address;
 	}
 
+	@Column(name="post")
 	public String getPostCode() {
 		return postCode;
 	}
@@ -106,7 +109,7 @@ public class Orders {
 		this.deliveryDate = deliveryDate;
 	}
 
-	@Column
+	@Column(name="confirmDate")
 	@Temporal(value = TemporalType.DATE) // 格式：2015-12-29
 	public Date getCofirmDate() {
 		return cofirmDate;

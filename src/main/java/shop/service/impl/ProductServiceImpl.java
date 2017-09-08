@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.bean.Product;
 import shop.bean.ProductImage;
-import shop.bean.wrap.ProductPropertyValue;
+import shop.bean.extend.ProductPropertyValue;
 import shop.dao.ProductDao;
 import shop.dao.ProductImageDao;
 import shop.dao.PropertyValueDao;

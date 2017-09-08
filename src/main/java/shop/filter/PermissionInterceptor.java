@@ -1,4 +1,4 @@
-/*package shop.filter;
+package shop.filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,16 +12,19 @@ import shop.redis.LoginCookie;
 import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
 
-*//**
- * @author lh
- *权限拦截器，拦截需要登录才能访问的资源，权限验证之后跳转到访问之前的页面
+
+/**
+ * 权限拦截器，拦截需要登录才能访问的资源，权限验证之后跳转到访问之前的页面
  *如果是ajax请求，则直接给前端返回消息“isAjax”，需要在前端判断进行跳转
- *//*
+ * @author lh
+ *
+ */
 public class PermissionInterceptor implements HandlerInterceptor {
 	
-	*//**
-	 * 用户是否启用redis
-	 *//*
+	
+	/**
+	 * 是否使用redis
+	 */
 	private static String isRedis=PropertyUtil.getProperty("isRedis");
 	
 
@@ -62,8 +65,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		}
 		else{//页面不需要权限，通过
 			return true;
-		}
-					
+		}				
 		
 	}
 
@@ -71,9 +73,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-
 	}
-
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
@@ -85,4 +85,3 @@ public class PermissionInterceptor implements HandlerInterceptor {
 	
 
 }
-*/

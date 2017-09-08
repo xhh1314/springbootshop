@@ -1,27 +1,23 @@
 package shop.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 @Entity
-public class Category {
-	private int id;
+public class Category implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4345900548033682881L;
 	private String uuid;
 	private String name;
 	private String description;
 	private List<Subdivide> subdivide;
 	
 	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getUuid() {
 		return uuid;
 	}

@@ -1,16 +1,19 @@
 package shop.bean;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,7 +21,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Entity
-public class Product {
+public class Product implements Serializable {
+	private static final long serialVersionUID = 2497775039375521824L;
 	private String uuid;
 	private String name;
 	private float originalPrice;
@@ -62,13 +66,14 @@ public class Product {
 		this.stock = stock;
 	}
 	//@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="createdate")
 	public String getCreateTime() {
 		return createTime;
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="sb_uuid",referencedColumnName="uuid")
 	public Subdivide getSubdivide() {
 		return subdivide;
@@ -85,6 +90,7 @@ public class Product {
 		//初始化第一张图片路径的值
 		//this.fristImagePath=productImage.get(0).getValue();
 	}
+	@Transient
 	public String getFristImagePath() {
 		return fristImagePath;
 	}

@@ -1,5 +1,6 @@
 package shop.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
-public class Property {
+public class Property implements Serializable {
+	private static final long serialVersionUID = -4601608711322547047L;
 	private String uuid;
 	private String name;
 	private Subdivide subdivide;

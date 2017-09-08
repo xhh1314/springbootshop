@@ -34,13 +34,13 @@ public class SubdivideDaoImp implements SubdivideDao {
 	@Override
 	public void updateSubdivide(Subdivide subdivide) {
 		// TODO Auto-generated method stub
-
+		throw new RuntimeException("该方法没有实现");
 	}
 
 	@Override
 	public void deleteSubdivide(String uuid) {
 		// TODO Auto-generated method stub
-
+		throw new RuntimeException("该方法没有实现");
 	}
 
 	@Override

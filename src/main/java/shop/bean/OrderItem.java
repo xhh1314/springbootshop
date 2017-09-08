@@ -1,5 +1,7 @@
 package shop.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Entity
-public class OrderItem {
+public class OrderItem implements Serializable{
+	private static final long serialVersionUID = 3854424464933186233L;
 	private int id;
 	private User user;
 	private Orders orders;

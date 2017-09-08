@@ -170,7 +170,7 @@ function submitForm(){
 <span class="selectTitel2"></span>
 </div>
 <div class="importMessage">
-<form action="fore/select" method="post" target="_blank"  id="selectForm">
+<form action="${pageContext.request.contextPath}/fore/select" method="post" target="_blank"  id="selectForm">
 <input type="text" name="selectInfo" placeholder="请输入商品种类、名称"  class="selectInfo"/>
 </form>
 <button class="selectButton"  onclick="submitForm()"><span class="buttonWord">搜索</span></button>

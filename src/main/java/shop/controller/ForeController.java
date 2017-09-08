@@ -18,7 +18,7 @@ import shop.bean.Product;
 import shop.bean.Subdivide;
 import shop.bean.comparator.ProductAscending;
 import shop.bean.comparator.ProductDescending;
-import shop.bean.wrap.ProductPropertyValue;
+import shop.bean.extend.ProductPropertyValue;
 import shop.service.CategoryService;
 import shop.service.ProductService;
 import shop.service.SubdivideService;

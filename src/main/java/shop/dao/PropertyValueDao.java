@@ -3,7 +3,7 @@ package shop.dao;
 import java.util.List;
 
 import shop.bean.PropertyValue;
-import shop.bean.wrap.ProductPropertyValue;
+import shop.bean.extend.ProductPropertyValue;
 
 public interface PropertyValueDao {
 	public void insert(List<PropertyValue> propertyValues);

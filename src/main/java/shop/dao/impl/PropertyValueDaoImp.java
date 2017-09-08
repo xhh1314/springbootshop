@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import shop.bean.PropertyValue;
-import shop.bean.wrap.ProductPropertyValue;
+import shop.bean.extend.ProductPropertyValue;
 import shop.dao.PropertyValueDao;
+import shop.dao.impl.jparepository.ProductPropertyValueRepository;
 import shop.dao.impl.jparepository.PropertyValueRepository;
 @Repository("propertyValueDao")
 public class PropertyValueDaoImp implements PropertyValueDao {
 
 	@Autowired
-	private PropertyValueRepository pvr;
+	private ProductPropertyValueRepository ppvr;
+	@Autowired 
+	private PropertyValueRepository pvr; 
 	public PropertyValueDaoImp() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,10 +28,10 @@ public class PropertyValueDaoImp implements PropertyValueDao {
 		pvr.save(propertyValues);
 	}
 
-	@Override
+	
 	public List<ProductPropertyValue> findProductPropertyValue(String uuid) {
 		// TODO Auto-generated method stub
-		return pvr.findByPd_uuid(uuid);
+		return ppvr.findByPd_uuid(uuid);
 	}
 
 }

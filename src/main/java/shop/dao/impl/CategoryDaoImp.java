@@ -30,13 +30,13 @@ public class CategoryDaoImp implements CategoryDao {
 	@Override
 	public void updateCategory(Category category) {
 		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("该方法没有实现");
 	}
 
 	@Override
 	public void deleteCategory(String uuid) {
 		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("该方法没有实现");
 	}
 
 	@Override

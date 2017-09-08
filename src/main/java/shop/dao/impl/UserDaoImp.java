@@ -16,13 +16,13 @@ public class UserDaoImp implements UserDao {
 	@Override
 	public User findByEmail(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findUserByEmail(email);
 	}
 
 	@Override
 	public User findByUuid(String uuid) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findUserByUuid(uuid);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class UserDaoImp implements UserDao {
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
-
+		throw new RuntimeException("该方法没有实现");
 	}
 
 }

@@ -1,5 +1,6 @@
 package shop.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Entity
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 2635050830373241097L;
 	private String uuid;
 	private String name;
 	private String password;
