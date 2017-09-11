@@ -4,6 +4,8 @@ import shop.bean.Orders;
 
 public interface OrdersDao {
 	
-	public void insertOrder(Orders order);
+	public Orders insertOrder(Orders order);
+
+	public Orders findbyUuid(String ordersUUID);
 
 }

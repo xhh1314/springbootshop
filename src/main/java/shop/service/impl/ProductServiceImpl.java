@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import shop.bean.Product;
@@ -44,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
 	// 图片存储目录
 	private static String imageRoot = PropertyUtil.getProperty("imageroot");
 	@Override
+	@Transactional
 	public boolean insert(Product product, MultipartFile image,HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub
 		boolean flag = false;

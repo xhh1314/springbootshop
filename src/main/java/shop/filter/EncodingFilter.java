@@ -1,59 +1,54 @@
-/*package shop.filter;
+package shop.filter;
 
-import java.io.IOException;
+
 import java.net.URLDecoder;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-*//**
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ * 
+ * 
+ * 解决URI有中文字符时，无法访问到系统资源问题 例如图片名称有中文时，不加这个过滤器将无法访问到图片
+ *
  * @author lh
- *解决URI有中文字符时，无法访问到系统资源问题
- *例如图片名称有中文时，不加这个过滤器将无法访问到图片
- *//*
-public class EncodingFilter implements Filter {
-	
-	private String encoding=null;
-	private FilterConfig filterConfig=null;
-	
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		this.filterConfig=filterConfig;
-	      this.encoding=filterConfig.getInitParameter("encoding");
-	}
+ *
+ */
+public class EncodingFilter implements HandlerInterceptor {
 
+	private final String encoding = "UTF-8";
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding(encoding);
 		response.setCharacterEncoding(encoding);
 		HttpServletRequest req = (HttpServletRequest) request;
-	       String uri = req.getRequestURI();
-	     // System.out.println("uri:"+uri);
-	       String ch = URLDecoder.decode(uri, encoding);
-	       if(uri.equals(ch)) {
-	           chain.doFilter(req, response);
-	           return;
-	       }
-	       ch = ch.substring(req.getContextPath().length());
-	     // System.out.println("ch:"+ch);
-	       filterConfig.getServletContext().getRequestDispatcher(ch).forward(req, response);
+		String uri = req.getRequestURI();
+		//System.out.println("uri:"+uri);
+		String ch = URLDecoder.decode(uri, encoding);
+		//System.out.println("解码后的uri："+ch);
+		if (uri.equals(ch)) {
+			return true;
+		}
+		ch = ch.substring(req.getContextPath().length());
+		return true;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void destroy() {
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
 		// TODO Auto-generated method stub
-		this.encoding=null;
-	      this.filterConfig=null;
+
 	}
 
 }
-*/

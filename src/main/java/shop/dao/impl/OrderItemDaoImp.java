@@ -1,5 +1,6 @@
 package shop.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -25,7 +26,7 @@ public class OrderItemDaoImp implements OrderItemDao {
 	@Override
 	public List<OrderItem> selectOrderItemsByUser(String userUUID) {
 		// TODO Auto-generated method stub
-		return oir.findByU_uuid(userUUID);
+		return oir.findByUserAndOrderisnull(userUUID);
 	}
 
 	@Override
@@ -58,12 +59,23 @@ public class OrderItemDaoImp implements OrderItemDao {
 	@Override
 	public void updateOrderId(String[] oids, String orderId) {
 		// TODO Auto-generated method stub
-		throw new RuntimeException("该方法没有实现");
+		if (oids==null)
+			return;
+		for(String orderItemId:oids){
+			oir.updateOrderId(orderItemId, orderId);
+		}
 	}
 
 	@Override
 	public List<OrderItem> selectItemsByIds(String[] oids) {
-		throw new RuntimeException("该方法没有实现");
+		List<OrderItem> orderItems=new ArrayList<OrderItem>();
+		for(String oid:oids){
+			OrderItem orderitem=oir.findItemById(Integer.parseInt(oid));
+			if(orderitem!=null)
+			orderItems.add(orderitem);
+		}
+		return orderItems;
+		
 	}
 
 	@Override

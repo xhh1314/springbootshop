@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.Category;
 import shop.bean.Property;
@@ -27,7 +28,7 @@ public class PropertyServiceImpl implements PropertyService {
 	@Autowired
 	private SubdivideService subdivideService;
 
-	
+	@Transactional
 	public boolean insert(Property property) throws MyException {
 		// TODO Auto-generated method stub
 		boolean flag=false;

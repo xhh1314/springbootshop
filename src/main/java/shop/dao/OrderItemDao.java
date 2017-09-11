@@ -37,6 +37,11 @@ public interface OrderItemDao {
 	public void updateNumber(String uid,String pid, int number);
 	
 	//public void updateOrderId(@Param("oids")String[] oids,@Param("orderId")String orderId);
+	/**
+	 * 一次更新多个订单项的orderId，多个订单项对应一个订单（该方法在用户提交订单的时候使用）
+	 * @param oids
+	 * @param orderId
+	 */
 	public void updateOrderId(String[] oids,String orderId);
 	
 	/**

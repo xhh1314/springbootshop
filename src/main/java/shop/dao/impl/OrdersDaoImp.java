@@ -1,5 +1,7 @@
 package shop.dao.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +15,17 @@ public class OrdersDaoImp implements OrdersDao {
 	private OrdersRepository or;
 
 	@Override
-	public void insertOrder(Orders order) {
+	//@Transactional
+	public Orders insertOrder(Orders order) {
 		// TODO Auto-generated method stub
-		or.save(order);
+		return or.save(order);
+		
+	}
+
+	@Override
+	public Orders findbyUuid(String ordersUUID) {
+		// TODO Auto-generated method stub
+		return or.findByUuid(ordersUUID);
 	}
 
 }

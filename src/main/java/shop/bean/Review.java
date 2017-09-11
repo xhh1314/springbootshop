@@ -1,7 +1,7 @@
 package shop.bean;
 
 import java.util.Date;
-
+@SuppressWarnings("unused")
 public class Review {
 	private int id;
 	private String content;

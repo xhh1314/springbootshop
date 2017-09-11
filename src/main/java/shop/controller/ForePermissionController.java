@@ -159,6 +159,8 @@ public class ForePermissionController {
 		}
 		
 	}
+	
+	//订单明细页面点击提交按钮后，返回一个结算页面的视图，可以录入收货地址、收货人等信息
 	@RequestMapping(value="/showOrder")
 	public String showOrder(ModelMap model,@RequestParam("oids") String[] oids){
 		model.addAttribute("orders",new Orders());

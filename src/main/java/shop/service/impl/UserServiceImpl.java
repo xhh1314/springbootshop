@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.User;
 import shop.dao.UserDao;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	@Override
+	@Transactional
 	public void insert(User user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		// TODO Auto-generated method stub
 		user.setUuid(GetUUID.getUuid());
@@ -53,6 +55,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public boolean register(User user) {
 		// TODO Auto-generated method stub
 		boolean flag=false;
@@ -84,6 +87,7 @@ public class UserServiceImpl implements UserService {
 				return false;
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
+			
 			 throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

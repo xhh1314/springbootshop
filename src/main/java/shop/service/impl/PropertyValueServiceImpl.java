@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.Property;
 import shop.bean.PropertyValue;
@@ -24,6 +25,7 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 	@Autowired
 	private ProductService productService;
 	@Override
+	@Transactional
 	public boolean add(List<PropertyValue> propertyValues) {
 		// TODO Auto-generated method stub
 		boolean flag=false;

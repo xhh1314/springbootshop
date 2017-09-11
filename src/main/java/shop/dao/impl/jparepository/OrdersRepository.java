@@ -7,4 +7,6 @@ import shop.bean.Orders;
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders,String> {
 
+	Orders findByUuid(String ordersUUID);
+
 }

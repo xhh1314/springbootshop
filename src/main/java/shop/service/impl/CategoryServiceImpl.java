@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.Category;
 import shop.dao.CategoryDao;
@@ -35,6 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 	 */
 	@Override
 	//插入语句
+	@Transactional
 	public boolean insert(Category category) throws MyException {
 		// TODO Auto-generated method stub
 		boolean flag=false;
@@ -72,6 +74,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	//更新一个Category
+	@Transactional
 	public boolean update(Category category) {
 		// TODO Auto-generated method stub
 		boolean flag=false;
@@ -87,6 +90,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	//删除一个Category
+	@Transactional
 	public boolean delete(Category category) {
 		// TODO Auto-generated method stub
 		boolean flag=false;

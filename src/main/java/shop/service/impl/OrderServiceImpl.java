@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrdersDao ordersDao;
 
 	@Override
+	@Transactional
 	public int insertOrderItem(OrderItem orderItem) throws MyException {
 		if (orderItem == null) {
 			throw new MyException("空指针异常！订单明细不能为空！");
@@ -85,6 +88,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteItem(String id) throws MyException {
 		// TODO Auto-generated method stub
 		if (id == null)
@@ -106,6 +110,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	//@Transactional
 	public void updateOrderItemOid(String[] oids, Orders order) {
 		// TODO Auto-generated method stub
 		String ordersUUID=GetUUID.getUuid();
@@ -119,13 +124,15 @@ public class OrderServiceImpl implements OrderService {
 		OrderCode oc=new OrderCode();
 		String ordercode=oc.getOrderCode(calendar, order.getUser().getUuid());
 		order.setOrdercode(ordercode);
+		//这里很奇怪，直接保存，不行，必须先保存，再显式进行查询，才会执行保存order的操作，不知道是不是hibernate这块做过什么优化，总是先执行upate方法，导致外键约束不通过
 		ordersDao.insertOrder(order);
-		orderItemDao.updateOrderId(oids, ordersUUID);
+		Orders new_order=ordersDao.findbyUuid(ordersUUID);
+		orderItemDao.updateOrderId(oids, new_order.getUuid());
 		
 	}
 
 	@Override
-	@Transactional(isolation=Isolation.READ_UNCOMMITTED)
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	public List<OrderItem> selectOrderItemByProductAndUser(String pid, String uid) throws MyException {
 		// TODO Auto-generated method stub
 		if(pid==null || uid==null)
