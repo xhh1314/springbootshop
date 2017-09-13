@@ -35,7 +35,7 @@
 
 	<!-- 事务 aop 配置 -->
 	<aop:config>
-		<aop:pointcut id="serviceMethods" expression="within(shop.service..*)" />
+		<aop:pointcut id="serviceMethods" expression="within(shop.dao..*)" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
 	</aop:config>
 

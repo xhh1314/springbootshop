@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- 配置Spring上下文监听器 不配置该监听器的话，上面的配置文件无法被下文的srping mvc读取到 -->
+	配置Spring上下文监听器 不配置该监听器的话，上面的配置文件无法被下文的srping mvc读取到
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- Spring MVC 核心控制器 DispatcherServlet 配置 -->
+	Spring MVC 核心控制器 DispatcherServlet 配置
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -28,12 +28,12 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- 配置Log4j监听器 -->
+	配置Log4j监听器
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
-	<!-- 配置Spring字符编码过滤器 -->
+	配置Spring字符编码过滤器
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -51,7 +51,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- 这个filter解决链接中有中文时，无法访问到资源问题，比如图片名称有中文时 -->
+	这个filter解决链接中有中文时，无法访问到资源问题，比如图片名称有中文时
 	<filter>
 		<filter-name>encodingFilter1</filter-name>
 		<filter-class>shop.filter.EncodingFilter</filter-class>
@@ -63,7 +63,7 @@
 	<filter-mapping>
 		<filter-name>encodingFilter1</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
 	<welcome-file-list>

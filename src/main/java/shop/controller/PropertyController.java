@@ -65,7 +65,6 @@ public class PropertyController {
 	
 	@RequestMapping(value="/propertyView")
 	public String propertyView(ModelMap model){
-		
 		List<Property> propertys=propertyService.findAll();
 		model.addAttribute("propertys",propertys);
 		return "back/propertyView";

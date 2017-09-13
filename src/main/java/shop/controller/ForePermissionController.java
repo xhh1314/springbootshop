@@ -139,7 +139,7 @@ public class ForePermissionController {
 			return "fore/orderItems";
 		}
 	}
-	@RequestMapping(value="/deleteItem/{oid}")
+	@RequestMapping(value="/deleteItem/{oid:.+}")
 	public void deleteItem(@PathVariable String oid,HttpServletResponse response){
 		try {
 			orderService.deleteItem(oid);

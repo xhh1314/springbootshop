@@ -22,10 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.bean.Product;
 import shop.bean.ProductImage;
+import shop.bean.Subdivide;
 import shop.bean.extend.ProductPropertyValue;
 import shop.dao.ProductDao;
 import shop.dao.ProductImageDao;
 import shop.dao.PropertyValueDao;
+import shop.dao.SubdivideDao;
 import shop.service.ProductService;
 import shop.util.GetUUID;
 import shop.util.PropertyUtil;
@@ -40,6 +42,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductImageDao productImageDao;
 	@Autowired
 	private PropertyValueDao propertyValueDao;
+	@Autowired
+	private SubdivideDao subdivideDao;
 	// 项目根目录
 	//private static String rootPath = null;
 	// 图片存储目录
@@ -50,17 +54,18 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		product.setUuid(GetUUID.getUuid());// 给uuid属性赋值
-		String rootPath=request.getServletContext().getRealPath("")+File.separator+imageRoot;
+		Subdivide sb=subdivideDao.selectById(product.getSubdivide().getUuid());
+		product.setSubdivide(sb);
+		String rootPath=request.getServletContext().getRealPath("")+imageRoot;
 		ProductImage pi = new ProductImage();
-		pi.setProduct(product);
 		pi.setValue(saveImage(image,rootPath));// 保存图片，并且将路径字符串返回保存
 		// 这里创建一个图片类的list,实际上本案例只上传了一张图片，没有涉及多种图片上传的情况
 		List<ProductImage> pis = new ArrayList<ProductImage>();
 		pis.add(pi);
-
 		if (pis != null)
 			product.setProductImage(pis);
-
+		//productDao.selectById(product.getUuid());
+		pi.setProduct(product);
 		productDao.insert(product);
 		if (product.getProductImage() != null)// 产品的图像属性不为空才进行插入操作
 			productImageDao.insert(product.getProductImage());

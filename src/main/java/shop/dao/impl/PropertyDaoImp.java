@@ -33,7 +33,7 @@ public class PropertyDaoImp implements PropertyDao {
 	@Override
 	public List<Property> findAll() {
 		// TODO Auto-generated method stub
-		return findAll();
+		return pr.findAll();
 	}
 
 	@Override

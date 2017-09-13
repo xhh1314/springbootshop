@@ -15,6 +15,7 @@ import shop.service.ProductService;
 import shop.service.PropertyValueService;
 
 @Service("propertyValueService")
+
 @Scope("singleton")
 public class PropertyValueServiceImpl implements PropertyValueService {
 
@@ -49,8 +50,9 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 	@Override
 	public List<Property> getPropertyByProductUUID(String uuid) {
 		// TODO Auto-generated method stub
-		
-		return propertyDao.findBySubdivide(productService.selectById(uuid).getSubdivide().getUuid());
+		System.out.println(uuid);
+		 List<Property> pps=propertyDao.findBySubdivide(productService.selectById(uuid).getSubdivide().getUuid());
+		 return pps;
 		
 	}
 

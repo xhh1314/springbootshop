@@ -1,26 +1,34 @@
 package springbootshop.test;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import shop.ShopApplication;
 import shop.bean.OrderItem;
 import shop.bean.Orders;
 import shop.bean.Product;
+import shop.bean.ProductImage;
 import shop.bean.Subdivide;
 import shop.bean.User;
 import shop.bean.extend.ProductPropertyValue;
 import shop.dao.OrderItemDao;
 import shop.dao.OrdersDao;
+import shop.dao.ProductDao;
+import shop.dao.ProductImageDao;
+import shop.dao.SubdivideDao;
 import shop.dao.UserDao;
 import shop.dao.impl.jparepository.OrderItemRepository;
 import shop.dao.impl.jparepository.ProductPropertyValueRepository;
@@ -50,7 +58,12 @@ public class SpringjpaandHibernateTest {
 	private UserDao userDao;
 	@Autowired
 	private OrdersDao ordersDao;
-
+@Autowired
+private ProductImageDao PID;
+@Autowired
+private SubdivideDao subdivideDao;
+@Autowired
+private ProductDao productDao;
 	
 	
 	@Test
@@ -111,9 +124,35 @@ public class SpringjpaandHibernateTest {
 		List<Product> pp=productService.selectBykeys("羽毛球");
 		System.out.println();
 	}
-	
-	
-	
+	@Test
+	public void ProductInserTest(){
+		Product p=new Product();
+		Subdivide sb=new Subdivide();
+		sb.setUuid("3.574417817192407E17");
+		p.setName("I5");
+		p.setOriginalPrice(1300);
+		p.setPromotePrice(1200);
+		p.setSubdivide(sb);
+		//productService.insert(p, new CommonsMultipartFile(new DiskFileItem(null, null, false, null, 0, null)), request)
+	}
+	@Test
+	public void productImageInsertTest(){
+		Product p=new Product();
+		Subdivide sb=subdivideDao.selectById("3.574417817192407E17");
+		p.setUuid(GetUUID.getUuid());
+		p.setName("I5");
+		p.setOriginalPrice(1300);
+		p.setPromotePrice(1200);
+		p.setSubdivide(sb);
+		ProductImage pi=new ProductImage();
+		pi.setValue("dddd\\ddd\\dd");
+		pi.setProduct(p);
+		productDao.insert(p);
+		List<ProductImage> pis=new ArrayList<ProductImage>();
+		pis.add(pi);
+		PID.insert(pis);
+		
+	}
 
 }
 

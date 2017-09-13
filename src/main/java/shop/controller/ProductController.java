@@ -48,11 +48,11 @@ public class ProductController {
 	
 	
 	/**
+	 * 这个控制器只适合上传一个multipartFile对象
 	 * @param product
 	 * @param model
 	 * @param request
 	 * @param file
-	 * 这个控制器只适合上传一个multipartFile对象
 	 * @return
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)

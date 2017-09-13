@@ -45,7 +45,7 @@ public class ForeController {
 	}
 
 	// 根据sbudivide_uuid返回所有对应产品的视图
-	@RequestMapping(value = "/showProducts/{uuid}")
+	@RequestMapping(value = "/showProducts/{uuid:.+}")
 	public String showProducts(@PathVariable String uuid, ModelMap model) {
 		String view = null;
 		List<Product> products = null;
@@ -61,7 +61,7 @@ public class ForeController {
 	}
 
 	// 根据产品的UUID返回这种产品的详细信息视图
-	@RequestMapping(value = "/showProduct/{uuid}")
+	@RequestMapping(value = "/showProduct/{uuid:.+}")
 	public String showProduct(@PathVariable String uuid, ModelMap model) {
 		Product product = productService.selectById(uuid);
 		List<ProductPropertyValue> ppv = productService.selectProductPropertyValue(uuid);

@@ -32,8 +32,9 @@ public class PropertyValueController {
 	private ProductService productService;
 	
 	//传入一个产品uuid
-	@RequestMapping(value="/addBefor/{pduuid}")
+	@RequestMapping(value="/addBefor/{pduuid:.+}")
 	public String addBefor(@PathVariable String pduuid,ModelMap model){
+		//System.out.println(pduuid);
 		List<Property> propertys=propertyValueService.getPropertyByProductUUID(pduuid);
 		model.addAttribute("pd_uuid",pduuid);
 		model.addAttribute("propertys",propertys);
