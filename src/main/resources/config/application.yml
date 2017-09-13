@@ -49,12 +49,13 @@ spring:
 #配置freemarker
   freemarker:
     request-context-attribute : request
+    prefix : views/
     
 #添加对jsp的支持
-  mvc:
-    view:
-      prefix : /WEB-INF/views/
-      suffix : .jsp
+#  mvc:
+#    view:
+#      prefix : /WEB-INF/views/
+#      suffix : .jsp
 #图片存储位置
 myproperties:
   imageroot : static/image

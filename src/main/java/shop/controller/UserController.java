@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -31,6 +32,7 @@ import shop.service.OrderService;
 import shop.service.UserService;
 import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
+import shop.util.SpringBeanUtil;
 
 @Controller
 @RequestMapping(value="/user")
@@ -39,6 +41,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private SpringBeanUtil util;
 	
 	/**
 	 * 用户是否启用redis
@@ -70,7 +74,10 @@ public class UserController {
 	}
 	//登录控制器
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(@ModelAttribute User user,HttpServletRequest request,ModelMap model,HttpServletResponse response) throws UnsupportedEncodingException{
+	public String login(@RequestParam("email") String email,@RequestParam("password") String password, HttpServletRequest request,ModelMap model,HttpServletResponse response) throws UnsupportedEncodingException{		
+		User user=util.getBean(User.class);
+		user.setEmail(email);
+		user.setPassword(password);
 		if(userService.verificationUser(user))//验证user用户名密码是否匹配
 		{
 			//verificationUser方法写错了，应该直接返回个User对象的，难得再去改了，这里再查一次User，不能直接使用前台传过来的User对象
