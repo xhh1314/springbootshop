@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -17,7 +14,7 @@
 
 <!-- 打印错误信息 -->
 <script type="text/javascript">
-var message=${message};
+var message=${message!}+"";
 if(message !=null && message!=undefined && message!="" ){
 	alert(message);
 }
@@ -48,15 +45,15 @@ if(pvs!==null){
 	url:"${ctx}/pvc/add",
 	type:"post",
 	contentType:"application/json;charset=utf-8",
-	dataType:"text",
+	//dataType:"json",
 	data:JSON.stringify(pvs),
 	success:function(data){
-		alert("成功添加"+data+"属性");
+		alert("成功添加"+data.result+"属性");
 		
 	},
 	error:function(res){
-		alert("失败！");
-		alert(res.responseText);
+		alert("后台出现错误！");
+		//alert(res.responseText);
 	}
 	
 	})
@@ -94,13 +91,13 @@ function submitUserList_3() {alert("ok");
 <body>
 <form  >
 <table class="table table-hover" id="tableList">
-<c:forEach items="${propertys}" var="property">
+<#list propertys as property>
 <tr>
-<td>${property.name}</td>
-<td><input name="${property.name}" id="${property.uuid}"/></td>
+<td>${property?if_exists.name}</td>
+<td><input name="${property?if_exists.name}" id="${property?if_exists.uuid}"/></td>
 </tr>
 
-</c:forEach>
+</#list>
 <tr>
 <td><input type="submit" value="submit" onclick="jsonTest()"/> <button type="button" value="submit" onclick="jsonTest()">test</button></td><td><input type="hidden" id="pd_uuid" value="${pd_uuid}"></input></td>
 </tr>

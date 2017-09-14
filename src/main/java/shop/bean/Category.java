@@ -6,7 +6,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 @Entity
+@Component
+@Scope("prototype")
 public class Category implements Serializable {
 	/**
 	 * 

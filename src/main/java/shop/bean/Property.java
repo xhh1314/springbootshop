@@ -6,7 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 @Entity
+@Component
+@Scope("prototype")
 public class Property implements Serializable {
 	private static final long serialVersionUID = -4601608711322547047L;
 	private String uuid;

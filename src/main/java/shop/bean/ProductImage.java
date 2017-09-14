@@ -9,7 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 @Entity
+@Component
+@Scope("prototype")
 public class ProductImage implements Serializable{
 	
 	private static final long serialVersionUID = 4163122448247304244L;

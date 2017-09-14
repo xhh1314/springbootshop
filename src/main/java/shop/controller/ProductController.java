@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import shop.bean.Product;
+import shop.bean.Subdivide;
 import shop.service.CategoryService;
 import shop.service.ProductService;
 import shop.service.SubdivideService;
+import shop.util.SpringBeanUtil;
 
 /**
  * @author lh
@@ -56,13 +58,23 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute Product product,  ModelMap model,HttpServletRequest request, @RequestParam("image") MultipartFile file){
+	public String addProduct(@RequestParam("name") String name, @RequestParam("originalPrice") float originalPrice,@RequestParam("promotePrice") float promotePrice,@RequestParam("stock") int stock,@RequestParam("createTime") String createTime,@RequestParam("subdivide.uuid") String sb_uuid,  ModelMap model,HttpServletRequest request, @RequestParam("image") MultipartFile file){
 		String flag=null;
-		
+		//这里应该自己写个工具类做封装
+		Product product=SpringBeanUtil.getBean(Product.class);
+		product.setName(request.getParameter("name"));
+		product.setOriginalPrice(Float.parseFloat(request.getParameter("originalPrice")));
+		product.setPromotePrice(promotePrice);
+		product.setStock(stock);
+		product.setCreateTime(createTime);
+		Subdivide sb=SpringBeanUtil.getBean(Subdivide.class);
+		sb.setUuid(sb_uuid);
+		product.setSubdivide(sb);
 		try {
 			if(productService.insert(product,file,request)){
 				flag="forward:/product/productView";
 			}
+			
 			else{
 				flag="back/addProduct";
 				model.addAttribute("product",product);

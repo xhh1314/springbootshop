@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -31,7 +29,7 @@
 			<td>删除</td>
 			<td>增加商品属性</td>
 		</tr>
-		<c:forEach items="${products}" var="product">
+		<#list products as product>
 			<tr>
 				<td>${product.name}</td>
 				<td>${product.originalPrice}</td>
@@ -39,16 +37,16 @@
 				<td>${product.stock}</td>
 				<td>${product.createTime}</td>
 				<td>
-				<c:forEach items="${product.productImage}" var="pi">
+				<#list product.productImage as pi >
 				<img name="image1" src="${ctx }/${pi.value}"/>
-				</c:forEach>
+				</#list>
 				</td>
 				<td><button class="btn btn-default" type="submit" id="update">修改</button></td>
 				<td><button class="btn btn-default" type="submit" id="delete">删除</button>
-					<input type="hidden" id="uuid" value="${property.uuid}" /></td>
+					<input type="hidden" id="uuid" value="${product.uuid}" /></td>
 				<td><button onclick="javascript:window.location.href='${ctx}/pvc/addBefor/${product.uuid}'" class="btn btn-default" type="submit" id="addProperty">添加属性</button></td>
 			</tr>
-		</c:forEach>
+		</#list>
 	</table>
 </body>
 </html>

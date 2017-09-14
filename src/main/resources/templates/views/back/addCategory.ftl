@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -16,7 +13,7 @@
 
 
 <script type="text/javascript">
-var message="${message}";
+var message="${message!}";
 if(message==null || message == undefined || message =="")
 	{}
 else{
@@ -27,19 +24,19 @@ else{
 
 </head>
 <body>
-<sf:form modelAttribute="category" class="form-inline" action="${ctx}/category/insert">
+<form class="form-inline" action="${ctx}/category/insert" method="post">
 
 <div class="form-group">
 <label for="name" >name</label>
-<sf:input path="name" id="name" class="form-control"/>
+<input type="text" name="name" id="name" class="form-control"/>
 </div>
 <div class="form-group">
 <label for="description">description</label>
-<sf:input path="description" id="description" class="from-control"/>
+<input type="text" name="description" id="description" class="from-control"/>
 </div>
 
 <input type="submit" value="submit" class="btn btn-default">
-</sf:form>
+</form>
 
 </body>
 </html>

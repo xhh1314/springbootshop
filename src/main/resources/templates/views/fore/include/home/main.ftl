@@ -1,16 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<!-- 引入bootstrap文件 和jquery -->
-<script type="text/javascript"
-	src="${ctx}/static/js/jquery-3.1.0.js"></script>
-<link rel="stylesheet"
-	href="${ctx }/static/js/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="${ctx }/static/js/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
 .wrapper{background:#F5F5F5}
 
@@ -195,21 +186,21 @@ function submitForm(){
 
 	<div class="mainbody">
 		<div class="category">
-		<c:forEach items="${categorys}" var="ct">
+		<#list categorys as ct>
 		<div class="eachCategory" cid="${ct.uuid}">
 		<span class="glyphicon glyphicon-link"></span>
 		<a>${ct.name}</a>
 		</div>
-		</c:forEach>
+		</#list>
 		</div>
 		<div class="subdivide">
-		<c:forEach items="${categorys}" var="category">
+		<#list categorys as category>
 		<div class="eachSubdivide" cid="${category.uuid}">
-		<c:forEach items="${category.subdivide}" var="subdivide" >
+		<#list category.subdivide as subdivide>
 		<a href="${ctx}/fore/showProducts/${subdivide.uuid}" target="_blank">${subdivide.name}</a>
-		</c:forEach>
+		</#list>
 		</div>
-		</c:forEach>
+		</#list>
 		</div>
 	</div>
 </div>

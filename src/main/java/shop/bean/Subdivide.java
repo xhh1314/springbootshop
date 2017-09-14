@@ -7,7 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 @Entity
+@Component
+@Scope("prototype")
 public class Subdivide implements Serializable{
 	private static final long serialVersionUID = 5180958664404841741L;
 	private String id;

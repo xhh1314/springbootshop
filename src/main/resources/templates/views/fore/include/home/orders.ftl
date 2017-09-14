@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form"  prefix="sf" %>
 <html>
 <#assign ctx=request.contextPath />
 <head>
@@ -247,30 +244,30 @@ function submitForm(){
 收货信息
 </div>
 <div class="deliveryTable">
-<sf:form action="${ctx}/forePermission/addOrder" modelAttribute="orders" method="post" id="OrderForm">
+<form action="${ctx}/forePermission/addOrder"   method="post" id="OrderForm">
 <table>
 <tr>
 <td>地址<span class="notnull">*</span></td>
-<td class="deliveryImformation" ><sf:textarea path="address" id="address"/><span style="vertical-align: top" id="addressInfo"></span></td>
+<td class="deliveryImformation" ><input type="text" name="address" id="address"/><span style="vertical-align: top" id="addressInfo"></span></td>
 </tr>
 <tr>
 <td>邮政编码</td>
-<td class="deliveryImformation" ><sf:input path="postCode" /></td>
+<td class="deliveryImformation" ><input  type="text" name="postCode" /></td>
 </tr>
 <tr>
 <td>收货人<span class="notnull">*</span></td>
-<td class="deliveryImformation" ><sf:input path="receiver" /><span id="receiverInfo"></span></td>
+<td class="deliveryImformation" ><input type="text" name="receiver" /><span id="receiverInfo"></span></td>
 </tr>
 <tr>
 <td>手机号<span class="notnull">*</span></td>
-<td class="deliveryImformation" ><sf:input path="mobile"/><span id="mobileInfo"></span></td>
+<td class="deliveryImformation" ><input type="text" name="mobile"/><span id="mobileInfo"></span></td>
 </tr>
 </table>
 <!-- 隐藏表单，提交订单项编号orderItem -->
-<c:forEach items="${orderItems}" var="orderItem">
-<input type="hidden" value="${orderItem.id}" name="oid"/>
-</c:forEach>
-</sf:form>
+<#list orderItems as orderItem>
+<input type="hidden" value="${orderItem?if_exists.id}" name="oid"/>
+</#list>
+</form>
 </div>
 </div>
 <!-- 确认订单信息 -->
@@ -290,28 +287,27 @@ function submitForm(){
 				</tr>
 			</thead>
 			<tbody class="confirm_tbody" >
-				<c:forEach items="${orderItems}" var="orderItem">
+				<#list orderItems as orderItem>
 					<tr class="cartProductItemTR" oid="${orderItem.id}">
 						<td> 
 						<a href="#nowhere" style="diplay: none"></a>
-							<c:forEach begin="0" end="0"
-								items="${orderItem.product.productImage}" var="image">
-								<img src="${ctx}/${image.value}" class="productImage">
-							</c:forEach></td>
+							<#list orderItem.product.productImage as image>
+								<img src="${ctx}/${image?if_exists.value}" class="productImage">
+							</#list></td>
 						<td class="td_productDescription" ><a
-							href="${ctx}/fore/showProduct/${orderItem.product.uuid}"
-							class="productDescription">${orderItem.product.name}</a></td>
-						<td><span class="originalPrice">${orderItem.product.originalPrice}</span>
-							<span class="promotePrice" oid="${orderItem.id}">${orderItem.product.promotePrice}</span>
+							href="${ctx}/fore/showProduct/${orderItem?if_exists.product.uuid}"
+							class="productDescription">${orderItem?if_exists.product.name}</a></td>
+						<td><span class="originalPrice">${orderItem?if_exists.product?if_exists.originalPrice}</span>
+							<span class="promotePrice" oid="${orderItem?if_exists.id}">${orderItem?if_exists.product?if_exists.promotePrice}</span>
 						</td>
 						<td>
 							<div class="changeNumber">
 								<input type="text" name="number" class="numberInput"
-									value="${orderItem.number}"  oid="${orderItem.id}"/>
+									value="${orderItem?if_exists.number}"  oid="${orderItem?if_exists.id}"/>
 							</div>
 						</td>
 						<td>
-						<span class="totalPrice" oid="${orderItem.id}">${totalPrice}</span>
+						<span class="totalPrice" oid="${orderItem?if_exists.id}">${totalPrice}</span>
 						</td>
 						<td>
 						<input type="radio" value="checked"/>普通配送
@@ -321,7 +317,7 @@ function submitForm(){
 	
 						</td>
 					</tr>
-				</c:forEach>
+				</#list>
 			</tbody>
 		</table>
 	</div>

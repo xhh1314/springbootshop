@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -17,11 +15,11 @@
 <tr>
 <td>名称</td><td>描述</td><td>修改</td><td>删除</td>
 </tr>
-<c:forEach items="${subdivides}" var="cg">
+<#list subdivides as cg>
 <tr>
 <td >${ cg.name}</td><td>${cg.description }</td><td ><button class="btn btn-default" type="submit" id="update">修改</button></td><td ><button class="btn btn-default" type="submit" id="delete">删除</button><input type="hidden" id="uuid" value="${cg.uuid}"/></td>
 </tr>
-</c:forEach>
+</#list>
 </table>
 </body>
 

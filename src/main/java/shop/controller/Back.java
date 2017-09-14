@@ -37,6 +37,25 @@ public class Back {
 		return "back/propertyValueView";
 	}
 	
+	@RequestMapping(value="/head",method=RequestMethod.GET)
+	public String toHead(){
+		
+		return "back/head";
+	}
+	
+	@RequestMapping(value="/left",method=RequestMethod.GET)
+	public String toLef(){
+		
+		return "back/left";
+	}
+	@RequestMapping(value="/body",method=RequestMethod.GET)
+	public String toBody(){
+		
+	return "back/body";
+	}
+	
+	
+	
 	
 
 }

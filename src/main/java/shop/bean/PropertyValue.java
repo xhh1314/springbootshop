@@ -6,7 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
+@Scope("prototype")
 public class PropertyValue implements Serializable{
 	private static final long serialVersionUID = 3527677684670642996L;
 	private int id;

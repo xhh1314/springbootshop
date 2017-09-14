@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${subdivide.name}${keysName}</title>
+<title>${subdivide?if_exists.name!}${keysName!}</title>
 <style type="text/css">
 div.productView {
 	position: relative;
@@ -136,7 +133,7 @@ function submitPriceSort(){
 		<div class="filtrate">
 			<div class="filtrateSort">
 				<a class="comprehensive"><span>综合排序</span></a> <a class="sales"><span>销量</span></a>
-				<a class="price" price_href="${uriPath}" onclick="submitPriceSort()"><span>价格</span><i></i></a> <a
+				<a class="price" price_href="${uriPath!}" onclick="submitPriceSort()"><span>价格</span><i></i></a> <a
 					class="comment"><span>评论数</span></a>
 			</div>
 
@@ -148,20 +145,20 @@ function submitPriceSort(){
 
 		<div class="productView">
 			<div class="productViewChild">
-				<h2>${noproducts}</h2>
-				<c:forEach items="${products}" var="product">
+				<h2>${noproducts?if_exists}</h2>
+				<#list products as product>
 					<div class="eachProduct">
-						<c:forEach items="${product.productImage}" var="pi">
+						<#list product?if_exists.productImage! as pi>
 							<a
-								href="${ctx}/fore/showProduct/${product.uuid}"><img
-								src="${ctx}/${pi.value}"></a>
+								href="${ctx}/fore/showProduct/${product?if_exists.uuid}"><img
+								src="${ctx}/${pi?if_exists.value}"></a>
 							<br>
-						</c:forEach>
-						<a class="price">${product.originalPrice}</a><br> <a
+						</#list>
+						<a class="price">${product?if_exists.originalPrice}</a><br> <a
 							class="productName"
-							href="${ctx}/fore/showProduct/${product.uuid}">${product.name}</a>
+							href="${ctx}/fore/showProduct/${product?if_exists.uuid}">${product?if_exists.name}</a>
 					</div>
-				</c:forEach>
+				</#list>
 			</div>
 		</div>
 	</div>

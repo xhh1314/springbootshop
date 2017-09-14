@@ -1,15 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <html>
 <#assign ctx=request.contextPath />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 引入bootstrap文件 和jquery -->
-<script type="text/javascript" src="${ctx}/static/js/jquery-3.1.0.js"></script>
-<link rel="stylesheet" href="${ctx }/static/js/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript" src="${ctx }/static/js/bootstrap/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 .productImage{
 float:left;
@@ -288,14 +280,14 @@ $(".buyButton").click(function(){
 <div class="wrapper">
 <div class="imgAndInfo">
 <div class="productImage">
-<c:forEach items="${product.productImage}" var="image">
-<img  src="${ctx}/${image.value}">
-</c:forEach>
+<#list product?if_exists.productImage as image>
+<img  src="${ctx}/${image?if_exists.value}">
+</#list>
 </div>
 
 <div class="infoandinfo" >
 <div class="productTitle">
-${product.name}
+${product?if_exists.name}
 </div>
 <div class="priceWrap">
 <div class="producSubTitle">
@@ -305,12 +297,12 @@ ${product.name}
 <div class="originalPriceDiv">
 <span class="originalPriceDesc" >原价</span>
 <span class="originalPriceYuan">¥</span>
-<span class="originalPrice">${product.originalPrice}</span>
+<span class="originalPrice">${product?if_exists.originalPrice}</span>
 </div>
 <div class="promotePriceDiv">
 <span class="promotePriceDesc">促销价</span>
 <span class="promotePriceYuan">¥</span>
-<span class="promoteProce">${product.promotePrice}</span>
+<span class="promoteProce">${product?if_exists.promotePrice}</span>
 </div>
 </div>
 </div>
@@ -349,9 +341,9 @@ ${product.name}
 <div class="productParameterPart">
 <div class="productParameter">产品参数</div>
 <div class="productParameterList">
-<c:forEach items="${productPropertyValues}" var="ppv">
-<span>${ppv.propertyName}:${ppv.propertyValue}</span>
-</c:forEach>
+<#list productPropertyValues as ppv>
+<span>${ppv?if_exists.propertyName}:${ppv?if_exists.propertyValue}</span>
+</#list>
 </div>
 </div>
 

@@ -33,6 +33,7 @@ import shop.service.UserService;
 import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
 import shop.util.SpringBeanUtil;
+import shop.util.VerifyCodeUtil;
 
 @Controller
 @RequestMapping(value="/user")
@@ -41,8 +42,6 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private SpringBeanUtil util;
 	
 	/**
 	 * 用户是否启用redis
@@ -56,9 +55,15 @@ public class UserController {
 		return "fore/register";
 	}
 	//注册控制器
+	@SuppressWarnings({ "unused" })
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String register(@ModelAttribute User user, ModelMap model){
-		String flag=null;
+	public String register(@ModelAttribute User user,@RequestParam("verifyCode") String verifyCode, ModelMap model,HttpServletRequest request){	
+		String verifyCodeSession=(String) request.getSession().getAttribute("verifyCode");
+		if(!verifyCodeSession.equalsIgnoreCase(verifyCode)){
+			model.addAttribute("user",user);
+			model.addAttribute("verifyCodeError","验证码错误！");
+			return "fore/register";
+		}
 		userService.register(user);
 		return "redirect:/user/login";
 	}
@@ -75,7 +80,7 @@ public class UserController {
 	//登录控制器
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(@RequestParam("email") String email,@RequestParam("password") String password, HttpServletRequest request,ModelMap model,HttpServletResponse response) throws UnsupportedEncodingException{		
-		User user=util.getBean(User.class);
+		User user=SpringBeanUtil.getBean(User.class);
 		user.setEmail(email);
 		user.setPassword(password);
 		if(userService.verificationUser(user))//验证user用户名密码是否匹配
@@ -192,6 +197,22 @@ public class UserController {
 		
 		
 	}
+	
+	@RequestMapping(value="/verifyCode/{random}")
+	public void verifyCode(HttpServletResponse response,HttpServletRequest request){
+		String verifyCode=VerifyCodeUtil.generateVerifyCode(4);
+		request.getSession().setAttribute("verifyCode", verifyCode);
+		VerifyCodeUtil.excuteVericode(verifyCode,response);
+		//return "fore/verifyCode";
+	}
+
+	@RequestMapping(value="/verifyCodeTest")
+	public String verifyCodeTest(HttpServletResponse response,HttpServletRequest request){
+		//String verifyCode=VerifyCodeUtil.excuteVericode(response);
+		//request.getSession().setAttribute("verifyCode", verifyCode);
+		return "fore/verifyCode";
+	}
+	
 	/**
 	 * 注销用户
 	 * @return

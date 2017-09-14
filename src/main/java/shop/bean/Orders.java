@@ -11,7 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
+@Scope("prototype")
 public class Orders implements Serializable{
 	private static final long serialVersionUID = 4025200169942039793L;
 	private String uuid;

@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -132,6 +129,10 @@ email:{
 </script>
 <!-- 使用ajax判断邮箱是否存在 -->
 <script type="text/javascript">
+//刷新验证码
+function refreshCode(){
+	document.getElementById("verifyCodeImg").src="${ctx}/user/verifyCode/"+Math.random();
+	}
 //匹配邮箱格式是否正确
 function patternEmail(){
 var email=$("#email").val();
@@ -193,27 +194,29 @@ error:function(data){
 </div>
 <div class="headerLine"></div>
 <div class="form">
-<sf:form modelAttribute="user" action="${ctx}/user/register"  id="userForm" method="post">
+<form  action="${ctx}/user/register"  id="userForm" method="post">
 <div class="form-group">
 <label for="email">邮箱:</label>
-<sf:input path="email"  class="form-control" id="email" onchange="detection()" placeholder="输入邮箱" /><span><a name="isexist" id="isexist"  style="color:red;text-decoration: none"></a></span>
+<input type="text" name="email"  class="form-control" id="email" onchange="detection()" placeholder="输入邮箱" /><span><a name="isexist" id="isexist"  style="color:red;text-decoration: none"></a></span>
 </div>
 
 <div class="form-group">
 <label for="name">用户名:</label>
-<sf:input path="name"  class="form-control" id="name" placeholder="输入用户名" />
+<input type="text" name="name"  class="form-control" id="name" placeholder="输入用户名" />
 </div>
 <div class="form-group">
 <label for="password">密码:</label>
-<sf:password path="password"  class="form-control" id="password" placeholder="输入密码" />
+<input type="password" name="password"  class="form-control" id="password" placeholder="输入密码" />
 </div>
 
 <div class="form-group">
 <label for="comfirm_password">密码确认：</label>
 <input type="password" name="comfirm_password"  class="form-control" id="comfirm_password" placeholder="密码确认" />
 </div>
-<input type="submit" value="提交" id="submit"  class="btn btn-default">
-</sf:form>
+<div class="registerSubmit">
+<input type="submit" value="提交" id="submit"  class="btn btn-default"><input type="text" name="verifyCode" /><img id="verifyCodeImg" name="verifyCodeImg" src="${ctx}/user/verifyCode/1"  style="cursor: pointer;" title="点击刷新"  onclick="refreshCode()"/><span>${verifyCodeError!}</span>
+</div>
+</form>
 </div>
 </body>
 </html>

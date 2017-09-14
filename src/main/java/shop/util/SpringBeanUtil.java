@@ -14,15 +14,15 @@ public class SpringBeanUtil implements ApplicationContextAware {
 		// TODO Auto-generated constructor stub
 	}
 
-	private ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		// TODO Auto-generated method stub
-		this.applicationContext = applicationContext;
+		SpringBeanUtil.applicationContext = applicationContext;
 	}
 	
-	public <T> T getBean(Class<T> beanClass){
+	public static <T> T getBean(Class<T> beanClass){
 		return applicationContext.getBean(beanClass);
 		
 	}

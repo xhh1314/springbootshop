@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <#assign ctx=request.contextPath />
@@ -16,7 +13,7 @@
 
 <!-- 打印错误信息 -->
 <script type="text/javascript">
-var message=${message};
+var message=${message!};
 if(message !=null && message!=undefined && message!="" ){
 	alert(message);
 }
@@ -24,46 +21,48 @@ if(message !=null && message!=undefined && message!="" ){
 </script>
 </head>
 <body>
-<sf:form action="${ctx}/product/add" modelAttribute="product"  enctype="multipart/form-data">
+<form action="${ctx}/product/add"  method="post" enctype="multipart/form-data">
 <div class="form-group">
 <label for="name">name</label>
-<sf:input path="name" id="name" class="form-control" cssStyle="width:50%"/>
+<input type="text" name="name" id="name" class="form-control" style="width:50%"/>
 </div>
 <div class="form-group">
 <label for="originalPrice">originalPrice</label>
-<sf:input path="originalPrice" id="originalPrice" class="form-control" cssStyle="width:50%"/>
+<input type="text" name="originalPrice" id="originalPrice" class="form-control" style="width:50%"/>
 </div>
 <div class="form-group">
 <label for="promotePrice">promotePrice</label>
-<sf:input path="promotePrice" class="form-control" id="promotePrice" cssStyle="width:50%"/>
+<input type="text" name="promotePrice" class="form-control" id="promotePrice" style="width:50%"/>
 </div>
 
 <div class="form-group">
 <label for="stock">stock</label>
-<sf:input path="stock" class="form-control" id="stock" cssStyle="width:50%"/>
+<input type="text" name="stock" class="form-control" id="stock" style="width:50%"/>
 </div>
 
 <!-- 这里的日期使用type=“date” Chrome 浏览器可以识别 -->
 <div class="form-group">
 <label for="createTime">createTime</label>
-<sf:input path="createTime"  type="date" class="form-control" cssStyle="width:50%"/>
+<input name="createTime"  type="date" class="form-control" style="width:50%"/>
 </div>
 
 <div class="form-group">
 <label for="subdivide.uuid">subdivide</label>
-<sf:select path="subdivide.uuid" class="form-control" cssStyle="width:25%">
-<sf:options items="${subdivides}" itemValue="uuid" itemLabel="name"/>
-</sf:select>
+<select name="subdivide.uuid" class="form-control" style="width:25%">
+<#list subdivides as sb >
+<option value="${sb.uuid}">${sb.name }</option>
+</#list>
+</select>
 </div>
 <div class="form-group">
 <label for="iamge">图片上传</label>
-<input name="image" type="file"></input>
+<input type="file" name="image" ></input>
 </div>
 
-<sf:button name="submit">submit</sf:button>
+<button  type="submit" name="submit">submit</button>
 
 
-</sf:form>
+</form>
 
 </body>
 </html>

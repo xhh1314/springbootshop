@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<#assign ctx=request.contextPath />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 引入bootstrap文件 和jquery -->
 <script type="text/javascript" src="${ctx}/static/js/jquery-3.1.0.js"></script>
-<link rel="stylesheet" href="${ctx }/static/js/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript" src="${ctx }/static/js/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${ctx}/static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="${ctx}/static/js/bootstrap/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 nav.top a:hover{
@@ -51,13 +50,13 @@ $(document).ready(function(){
 购物首页
 <span class="glyphicon glyphicon-home redColor"></span>
 </a>
-<span>欢迎</span><span id="username">${user.name}</span>
+<span>欢迎</span><span id="username">${user?if_exists.name!}</span>
 <a id="loginTitle" href="${ctx}/user/login">请登录</a>
 <a id="registerTitle" href="${ctx}/user/register">注册</a>
 <span class="pull-right">
 <a href="">我的订单</a>
 <span class="glyphicon glyphicon-shopping-cart redColor"></span>
-<a href="${ctx}/forePermission/showCart">购物车 <strong>${cartNumber}</strong>件</a>
+<a href="${ctx}/forePermission/showCart">购物车 <strong>${cartNumber!}</strong>件</a>
 <a id="logout" href="${ctx}/user/logout">注销</a>
 </span>
 </nav>
