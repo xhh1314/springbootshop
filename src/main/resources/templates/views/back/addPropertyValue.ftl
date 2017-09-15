@@ -45,17 +45,20 @@ if(pvs!==null){
 	url:"${ctx}/pvc/add",
 	type:"post",
 	contentType:"application/json;charset=utf-8",
-	//dataType:"json",
 	data:JSON.stringify(pvs),
+	//data:pvs,
+	dataType:"json",
 	success:function(data){
-		alert("成功添加"+data.result+"属性");
+		data=JSON.parse(data);
+		alert("成功添加"+data.message+"属性");
 		
 	},
-	error:function(res){
-		alert("后台出现错误！");
-		//alert(res.responseText);
+	error : function(XMLHttpRequest, textStatus, errorThrown) {//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框　　　　
+		//alert(XMLHttpRequest.responseText); 
+		//alert(XMLHttpRequest.status);
+		//alert(XMLHttpRequest.readyState);
+		//alert(textStatus); // parser error;
 	}
-	
 	})
 	
 }
@@ -63,30 +66,6 @@ if(pvs!==null){
 }
 </script>
 
-<!-- ajax网上找来的范例 -->
-<script type="text/javascript" language="JavaScript">
-function submitUserList_3() {alert("ok");
-    var customerArray = new Array();
-    customerArray.push({id: "1", name: "李四", pwd: "123"});
-    customerArray.push({id: "2", name: "张三", pwd: "332"});
-    $.ajax({
-        url: "/user/submitUserList_3",
-        type: "POST",
-        contentType : 'application/json;charset=utf-8', //设置请求头信息
-        dataType:"json",
-        //data: JSON.stringify(customerArray),    //将Json对象序列化成Json字符串，JSON.stringify()原生态方法
-        data: $.toJSON(customerArray),            //将Json对象序列化成Json字符串，toJSON()需要引用jquery.json.min.js
-        success: function(data){
-            alert(data.responseText);
-        },
-        error: function(res){
-            alert(res.responseText);
-        }
-    });
-}
-
-
-</script>
 </head>
 <body>
 <form  >

@@ -139,8 +139,7 @@ public class VerifyCodeUtil{
         g2.setColor(c);// 设置背景色  
         g2.fillRect(0, 2, w, h-4);  
           
-        //绘制干扰线  
-        Random random = new Random();  
+        //绘制干扰线   
         g2.setColor(getRandColor(160, 200));// 设置线条的颜色  
         for (int i = 0; i < 20; i++) {  
             int x = random.nextInt(w - 1);  

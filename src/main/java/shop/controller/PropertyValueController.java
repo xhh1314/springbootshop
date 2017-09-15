@@ -42,9 +42,9 @@ public class PropertyValueController {
 		return "back/addPropertyValue";
 	}
 	//produces注解为text/html时,可以接受application/json，格式数据。反之则不行
-	@RequestMapping(value="/add",method=RequestMethod.POST,produces="application/json;charset=utf-8")
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
-	public MessageObject add(@RequestBody List<PropertyValue> propertyValues ,ModelMap model,HttpServletResponse response) throws IOException{
+	public  MessageObject add(@RequestBody List<PropertyValue> propertyValues ,HttpServletResponse response) throws IOException{
 		String flag=null;
 		MessageObject mo=new MessageObject();
 		try {
@@ -52,7 +52,7 @@ public class PropertyValueController {
 			flag="result:success";
 			mo.setMessage("数据添加成功");
 			mo.setResult("success");
-			System.out.println("数据添加成功！");
+			//System.out.println("数据添加成功！");
 			//ResponseWrite.write(response, "succcess");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -64,6 +64,7 @@ public class PropertyValueController {
 			e.printStackTrace();
 		}
 		//这里返回ajax消息给前端
+		//return "{\"message\":\"ok\"}";
 		return mo;
 		
 		//return "forward:/product/productView"; 这里返回消息给ajax，就不能再转发到其他视图了

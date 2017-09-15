@@ -65,11 +65,11 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		
-<!-- 		<dependency>
+ 		<dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
         <optional>true</optional>
-    </dependency> -->
+    </dependency> 
 
 		<!-- com.google.code.gson -->
 		<dependency>
