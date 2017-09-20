@@ -11,8 +11,14 @@
 <link rel="stylesheet" href="${ctx }/static/js/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${ctx }/static/js/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+<script type="text/javascript">
+function exportExcel(){
+	window.location.href="${ctx}/property/excel";
+}
 
+</script>
+<body>
+<button type="button" onclick="exportExcel()">导出excel</button>
 <table class="table table-hover table-condensed table-bordered">
 <tr>
 <td>名称</td><td>所属种类</td><td>修改</td><td>删除</td>

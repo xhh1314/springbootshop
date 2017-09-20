@@ -49,15 +49,15 @@ if(pvs!==null){
 	//data:pvs,
 	dataType:"json",
 	success:function(data){
-		data=JSON.parse(data);
-		alert("成功添加"+data.message+"属性");
+		//var data=JSON.parse(data);
+		alert(data.message);//输出商品信息
 		
 	},
 	error : function(XMLHttpRequest, textStatus, errorThrown) {//这个error函数调试时非常有用，如果解析不正确，将会弹出错误框　　　　
 		//alert(XMLHttpRequest.responseText); 
 		//alert(XMLHttpRequest.status);
 		//alert(XMLHttpRequest.readyState);
-		//alert(textStatus); // parser error;
+		alert(textStatus); // parser error;
 	}
 	})
 	
@@ -78,7 +78,7 @@ if(pvs!==null){
 
 </#list>
 <tr>
-<td><input type="submit" value="submit" onclick="jsonTest()"/> <button type="button" value="submit" onclick="jsonTest()">test</button></td><td><input type="hidden" id="pd_uuid" value="${pd_uuid}"></input></td>
+<td><button type="button" value="submit" onclick="jsonTest()">提交</button></td><td><input type="hidden" id="pd_uuid" value="${pd_uuid}"></input></td>
 </tr>
 </table>
 

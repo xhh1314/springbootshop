@@ -186,7 +186,7 @@ function submitForm(){
 
 	<div class="mainbody">
 		<div class="category">
-		<#list categorys as ct>
+		<#list categorys?if_exists as ct>
 		<div class="eachCategory" cid="${ct.uuid}">
 		<span class="glyphicon glyphicon-link"></span>
 		<a>${ct.name}</a>
@@ -194,7 +194,7 @@ function submitForm(){
 		</#list>
 		</div>
 		<div class="subdivide">
-		<#list categorys as category>
+		<#list categorys?if_exists as category>
 		<div class="eachSubdivide" cid="${category.uuid}">
 		<#list category.subdivide as subdivide>
 		<a href="${ctx}/fore/showProducts/${subdivide.uuid}" target="_blank">${subdivide.name}</a>

@@ -30,7 +30,7 @@
 <a>属性值</a>
 <div>
 <a href="" target="body">新增</a>
-<a href="" target="body">查看</a>
+<a href="${ctx}/pvc/show" target="body">查看</a>
 </div>
 </div>
 

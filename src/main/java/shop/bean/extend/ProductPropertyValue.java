@@ -27,7 +27,7 @@ public class ProductPropertyValue {
 	public String getProductUuid() {
 		return productUuid;
 	}
-	@Transient
+	
 	public String getProductName() {
 		return productName;
 	}

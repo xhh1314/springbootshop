@@ -34,4 +34,22 @@ public class PropertyValueDaoImp implements PropertyValueDao {
 		return ppvr.findByPd_uuid(uuid);
 	}
 
+	@Override
+	public int findTotalPage() {
+		// TODO Auto-generated method stub
+		return (int)ppvr.findTotalNumber();
+	}
+
+	@Override
+	public List<ProductPropertyValue> findProductPropertyValueByPage(int begin, int end) {
+		// TODO Auto-generated method stub
+		return ppvr.findProductPropertyValueByPage(begin,end);
+	}
+
+	@Override
+	public List<ProductPropertyValue> findProductPropertyValueByPage(int end) {
+		// TODO Auto-generated method stub
+		return ppvr.findProductPropertyValueByPage(end);
+	}
+
 }

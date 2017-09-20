@@ -1,8 +1,13 @@
 package shop.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +22,7 @@ import shop.bean.Subdivide;
 import shop.exception.MyException;
 import shop.service.PropertyService;
 import shop.service.SubdivideService;
+import shop.util.ExportExcelSeedBack;
 import shop.service.CategoryService;
 
 @Controller
@@ -68,6 +74,32 @@ public class PropertyController {
 		List<Property> propertys=propertyService.findAll();
 		model.addAttribute("propertys",propertys);
 		return "back/propertyView";
+	}
+	
+	@RequestMapping(value="/excel",method=RequestMethod.GET)
+	public void exportExcel(HttpServletResponse response){
+		String[] headers={"序号","属性名称","所属种类"};
+		String title="商品属性";
+		String fileName="商品属性";
+		List<Property> propertys=propertyService.findAll();
+		List<Object[]> datalist=new ArrayList<Object[]>();
+		for(Property p:propertys){
+			Object[] os=new Object[headers.length];
+			os[1]=p.getName();
+			os[2]=p.getSubdivide().getName();	
+			datalist.add(os);
+		}
+		ExportExcelSeedBack ex=new ExportExcelSeedBack(fileName, title, headers, datalist,response);
+		try {
+			ex.export();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
