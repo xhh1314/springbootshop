@@ -66,7 +66,7 @@ private SubdivideDao subdivideDao;
 private ProductDao productDao;
 	
 	
-	@Test
+	//@Test
 	public void findPropertyValueTest(){
 		List<ProductPropertyValue> pv=pvr.findByPd_uuid("005e2984-644d-4d1b-9878-f36cb52541e6");
 		System.out.println();

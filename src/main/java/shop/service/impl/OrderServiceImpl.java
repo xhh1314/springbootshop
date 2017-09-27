@@ -24,7 +24,7 @@ import shop.util.GetUUID;
 import shop.util.OrderCode;
 
 @Service("orderService")
-@Scope("prototype")
+@Scope("singleton")
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired

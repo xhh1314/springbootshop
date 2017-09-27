@@ -33,7 +33,7 @@ import shop.util.GetUUID;
 import shop.util.PropertyUtil;
 
 @Service("productService")
-@Scope("prototype")
+@Scope("singleton")
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired

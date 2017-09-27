@@ -22,6 +22,7 @@ encoding//src/main/resources/templates/views/fore/include/home/orders.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/include/home/pay.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/include/home/productView.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/include/home/productsView.ftl=UTF-8
+encoding//src/main/resources/templates/views/fore/index.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/login.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/register.ftl=UTF-8
 encoding//src/main/resources/templates/views/fore/verifyCode.ftl=UTF-8

@@ -4,7 +4,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-//same as @Configuration @EnableAutoConfiguration @ComponentScan
+
+/**
+ * same as @Configuration @EnableAutoConfiguration @ComponentScan
+ * @author lh
+ * @description 
+ * @date 2017年9月27日
+ */
+/**
+ * 
+ * @author lh
+ * @date 2017年9月27日
+ * @version 
+ */
 @SpringBootApplication
 public class ShopApplication extends SpringBootServletInitializer{//通过继承这个类来实现对jsp的支持
 

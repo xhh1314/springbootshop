@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,6 +39,7 @@ import shop.util.VerifyCodeUtil;
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
+	private static final Logger logger=LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -83,10 +85,12 @@ public class UserController {
 		User user=SpringBeanUtil.getBean(User.class);
 		user.setEmail(email);
 		user.setPassword(password);
-		if(userService.verificationUser(user))//验证user用户名密码是否匹配
+		//验证user用户名密码是否匹配
+		if(userService.verificationUser(user))
 		{
 			//verificationUser方法写错了，应该直接返回个User对象的，难得再去改了，这里再查一次User，不能直接使用前台传过来的User对象
 			User user_new=userService.selectByEmail(user.getEmail());
+			logger.info("用户:{}登录了系统！",user_new.getName());
 			HttpSession session=request.getSession();
 			session.setAttribute("user", user_new);
 			loginInial(session);//初始化页面

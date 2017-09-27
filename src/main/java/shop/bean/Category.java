@@ -26,6 +26,10 @@ public class Category implements Serializable {
 	public String getUuid() {
 		return uuid;
 	}
+	/**
+	 * 
+	 * @param uuid
+	 */
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
@@ -47,6 +51,21 @@ public class Category implements Serializable {
 	}
 	public void setSubdivide(List<Subdivide> subdivide) {
 		this.subdivide = subdivide;
+	}
+	@Override
+	public String toString() {
+		return "Category [uuid=" + uuid + ", name=" + name + ", description=" + description + ", subdivide=" + subdivide
+				+ "]";
+	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.uuid.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.uuid.equals(((Category)obj).uuid);
 	}
 	
 

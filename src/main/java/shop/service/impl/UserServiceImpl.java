@@ -3,6 +3,8 @@ package shop.service.impl;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import shop.util.GetUUID;
 @Service("userService")
 @Scope("singleton")
 public class UserServiceImpl implements UserService {
+	private static final Logger logger=LoggerFactory.getLogger(UserServiceImpl.class);
+	
 
 	@Autowired
 	private UserDao userDao;
@@ -81,8 +85,10 @@ public class UserServiceImpl implements UserService {
 			return false;
 		try {
 			//验证密码是否符合
-			if(user1.getPassword().equals(GetMD5.Md5(user.getPassword())))
+			if(user1.getPassword().equals(GetMD5.Md5(user.getPassword()))){
+				
 				return true;
+			}
 			else
 				return false;
 		} catch (NoSuchAlgorithmException e) {
@@ -91,7 +97,7 @@ public class UserServiceImpl implements UserService {
 			 throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
+			throw new RuntimeException("编码格式不符合规范");
 		}
 		
 	}

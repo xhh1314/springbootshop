@@ -10,7 +10,7 @@ import shop.exception.PageException;
  *算法思路： 1、不根据当前页算起始页  2、当用户点击上一页或者下页的时候，才算出下一次需要显示的页码
  */
 @Component
-@Scope("session")
+@Scope("prototype")
 public class PageV1  extends Page{
 
 	public PageV1() {
