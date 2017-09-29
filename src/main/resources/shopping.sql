@@ -7,7 +7,7 @@ name varchar(255) not null,
 password varchar(255) default null,
 primary key(uuid)
 );
-
+create unique index  uk_email on user (email(20));
 
 create table Orders(
 uuid varchar(255) not null,
@@ -26,6 +26,7 @@ u_uuid varchar(255) not null,
 primary key(uuid),
 constraint fk_order_user foreign key(u_uuid) references user(uuid)
 );
+create index idx_u_uuid on orders(u_uuid);
 
 create table category(
 id int(11) auto_increment,
@@ -34,6 +35,7 @@ name varchar(255) not null,
 description varchar(255),
 primary key(uuid)
 );
+create unique index uk_uuid on category(uuid(20));
 
 create table subdivide(
 id int(11) not null auto_increment,
@@ -44,6 +46,8 @@ ct_uuid varchar(255) not null,
 primary key(id),
 constraint fk_subdivide_category foreign key(ct_uuid) references category(uuid)
 );
+create index idx_name on subdivide(name(20));
+
 create table product(
 id int(11) auto_increment,
 uuid varchar(255) not null unique,
@@ -56,7 +60,8 @@ sb_uuid varchar(255) not null,
 primary key(id),
 constraint fk_propduct_subdivide foreign key(sb_uuid) references subdivide(uuid)
 );
-
+create index idx_name on product(name);
+create index idx_promoteprice on product(promoteprice);
 
 create  table OrderItem (
 id int(11) not null auto_increment,

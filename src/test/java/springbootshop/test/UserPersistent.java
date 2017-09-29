@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import shop.ShopApplication;
 import shop.bean.User;
+import shop.dao.UserDao;
 import shop.service.UserService;
 
 @RunWith(SpringRunner.class)
@@ -16,6 +17,8 @@ import shop.service.UserService;
 public class UserPersistent {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserDao userDao;
 
 	@Test
 	public void insertUserTest(){
@@ -23,8 +26,14 @@ public class UserPersistent {
 		user.setEmail("903440799@qq.com");
 		user.setName("李浩");
 		user.setPassword("lihao19920607");
-		userService.register(user);
+		//userService.register(user);
+		//assert.
 	
+	}
+	@Test
+	public void getUser() throws NoSuchMethodException, SecurityException{
+		User user=userDao.findByEmail("903440799@qq.com");
+		assert "李浩".equals(user.getName()):"查询出来的用户结果不符"+UserPersistent.class.getDeclaredMethod("getUser",UserPersistent.class);
 	}
 
 }
