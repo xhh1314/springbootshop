@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import shop.constant.DayEnum;
+import shop.manager.constant.DayEnum;
 
 
 

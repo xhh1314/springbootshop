@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.User;
 import shop.dao.UserDao;
+import shop.manager.util.GetMD5;
+import shop.manager.util.GetUUID;
 import shop.service.UserService;
-import shop.util.GetMD5;
-import shop.util.GetUUID;
 
 @Service("userService")
 @Scope("singleton")

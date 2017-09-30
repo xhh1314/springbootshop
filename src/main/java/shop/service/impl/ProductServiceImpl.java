@@ -28,9 +28,9 @@ import shop.dao.ProductDao;
 import shop.dao.ProductImageDao;
 import shop.dao.PropertyValueDao;
 import shop.dao.SubdivideDao;
+import shop.manager.util.GetUUID;
+import shop.manager.util.PropertyUtil;
 import shop.service.ProductService;
-import shop.util.GetUUID;
-import shop.util.PropertyUtil;
 
 @Service("productService")
 @Scope("singleton")

@@ -64,6 +64,7 @@ color:red;
 <button type="submit" class="btn btn-primary">登录</button>
 <!-- previousUri 用于记录登录之前的页面 -->
 <input type="hidden"  name="previousUri" value="${previousUri!}">
+<input type="hidden" name ="webToken" value="${webToken?if_exists}">
 </form>
 <div class="login-fault">
 <a>无法登陆？</a>

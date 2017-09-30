@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.Subdivide;
 import shop.dao.SubdivideDao;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
+import shop.manager.util.GetUUID;
 import shop.service.SubdivideService;
-import shop.util.GetUUID;
 
 @Service("subdivideService")
 @Scope("singleton")

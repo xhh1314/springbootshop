@@ -4,7 +4,7 @@ import java.util.List;
 
 import shop.bean.Category;
 import shop.bean.Subdivide;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
 
 public interface SubdivideService {
 	

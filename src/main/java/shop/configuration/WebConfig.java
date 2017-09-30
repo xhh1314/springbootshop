@@ -2,14 +2,14 @@ package shop.configuration;
 
 
 
-import shop.filter.PermissionInterceptor;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import shop.filter.EncodingFilter;
+import shop.web.filter.CSRFTokenInterceptor;
+import shop.web.filter.EncodingFilter;
+import shop.web.filter.PermissionInterceptor;
 
 //注：这里的配置可以直接写在xml文件中，通过@ImportResource注解即可导入配置类中
 
@@ -34,6 +34,7 @@ public class WebConfig  extends WebMvcConfigurerAdapter  {
 		super.addInterceptors(registry);
 		registry.addInterceptor(new PermissionInterceptor()).addPathPatterns("/forePermission/*");
 		registry.addInterceptor(new EncodingFilter()).addPathPatterns("/**");
+		registry.addInterceptor(new CSRFTokenInterceptor()).addPathPatterns("/**");
 	}
 	
 	//注册资源路径

@@ -13,11 +13,11 @@ import shop.bean.Category;
 import shop.bean.Property;
 import shop.bean.Subdivide;
 import shop.dao.PropertyDao;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
+import shop.manager.util.GetUUID;
 import shop.service.CategoryService;
 import shop.service.PropertyService;
 import shop.service.SubdivideService;
-import shop.util.GetUUID;
 
 @Service("propertyService")
 @Scope("singleton")

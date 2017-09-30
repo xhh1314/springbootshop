@@ -4,7 +4,7 @@ import java.util.List;
 
 import shop.bean.OrderItem;
 import shop.bean.Orders;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
 
 /**
  * @author lh

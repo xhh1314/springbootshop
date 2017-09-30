@@ -18,10 +18,10 @@ import shop.bean.OrderItem;
 import shop.bean.Orders;
 import shop.dao.OrderItemDao;
 import shop.dao.OrdersDao;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
+import shop.manager.util.GetUUID;
+import shop.manager.util.OrderCode;
 import shop.service.OrderService;
-import shop.util.GetUUID;
-import shop.util.OrderCode;
 
 @Service("orderService")
 @Scope("singleton")

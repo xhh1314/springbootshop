@@ -12,9 +12,9 @@ import shop.bean.PropertyValue;
 import shop.bean.extend.ProductPropertyValue;
 import shop.dao.PropertyDao;
 import shop.dao.PropertyValueDao;
+import shop.manager.util.Page;
 import shop.service.ProductService;
 import shop.service.PropertyValueService;
-import shop.util.Page;
 
 @Service("propertyValueService")
 @Scope("singleton")

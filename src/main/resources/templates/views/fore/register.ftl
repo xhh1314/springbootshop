@@ -60,11 +60,14 @@ margin-right:auto !important;
 <script type="text/javascript">
 //定义一个全局变量记住邮箱是否存在
 var flag=false;
+//全局变量定义验证码是否正确
+var vcode=false;
 
 //代替sumbmit按钮，验证通过之后才能提交
 $.validator.setDefaults({
     submitHandler: function(form) {
-    	if(flag)//如果邮箱不存在才提交！
+    	detectVerifyCode();
+    	if(flag && vcode)//如果邮箱不存在才提交！
     		form.submit();
     }
 });
@@ -120,8 +123,6 @@ email:{
 	email:"邮箱格式不对！"
 		
 	}
-
-
 }//messages结束大括号
 
 });//validate
@@ -147,7 +148,37 @@ var email=$("#email").val();
 	else
 		return true;
 	}
+//ajax访问后台，验证验证码是否正确
+function detectVerifyCode(){
+var verifyCode=$("#verifyCode").val();
+$.ajax({
+	url:"${ctx}/user/detectVerifyCode?verifyCode="+verifyCode,
+	async:false,
+	dataType:"json",
+	method:"get",
+	contentType:"text/html;charset=utf-8",
+	success:function(data){
+if(data.meta.success){
+	vcode=true;
+	return true;
+}else
+	{
+	$("#verifyCodeMessage").html(data.meta.message);
+	return false;
+	}
+		},
+	error:function(){
+alert("系统繁忙！稍后重试");
+return false;
+		}
 	
+
+	
+})
+	
+}
+
+//验证邮箱是否已经被注册
 function detection(){ 
 	var email={email:$("#email").val()};
 	
@@ -156,33 +187,30 @@ function detection(){
 $.ajax({
 url:"${ctx}/user/isexist",
 type:"post",
-dataType:"text",
+dataType:"json",
 data:JSON.stringify(email),
-contentType:"'application/json; charset=UTF-8",
+contentType:"application/json; charset=UTF-8",
 success:function(data){
-	
-	if (data=="0"){
+	if (!data.meta.success){
 		//邮箱已经注册
 		//alert(data);
-	document.getElementById("isexist").innerText="邮箱已经注册！";
+	document.getElementById("isexist").innerText=data.meta.message;
 	flag=false;
 		
 	}
 	else{
 		//邮箱可以使用
-		document.getElementById("isexist").innerText="邮箱可以使用！";
+		document.getElementById("isexist").innerText=data.meta.message;
 		flag=true;
 	}	
 },
 error:function(data){
-	alert("ajax发生错误！");
+	alert(data.meta.message);
 }
 
 });
 	}
 }
-
-
 
 </script>
 </head>
@@ -214,8 +242,9 @@ error:function(data){
 <input type="password" name="comfirm_password"  class="form-control" id="comfirm_password" placeholder="密码确认" />
 </div>
 <div class="registerSubmit">
-<input type="submit" value="提交" id="submit"  class="btn btn-default"><input type="text" name="verifyCode" /><img id="verifyCodeImg" name="verifyCodeImg" src="${ctx}/user/verifyCode/1"  style="cursor: pointer;" title="点击刷新"  onclick="refreshCode()"/><span>${verifyCodeError!}</span>
+<input type="submit" value="提交" id="submit"  class="btn btn-default"><input type="text" name="verifyCode" id="verifyCode"/><img id="verifyCodeImg" name="verifyCodeImg" src="${ctx}/user/verifyCode/1"  style="cursor: pointer;" title="点击刷新"  onclick="refreshCode()"/><span id="verifyCodeMessage">${verifyCodeError!}</span>
 </div>
+<input type="hidden" name="webToken" value="${webToken?if_exists}">
 </form>
 </div>
 </body>

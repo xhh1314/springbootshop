@@ -5,7 +5,7 @@ import java.util.List;
 import shop.bean.Property;
 import shop.bean.PropertyValue;
 import shop.bean.extend.ProductPropertyValue;
-import shop.util.Page;
+import shop.manager.util.Page;
 
 public interface PropertyValueService {
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import shop.bean.Category;
 import shop.dao.CategoryDao;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
 
 public interface CategoryService {
 	public boolean insert(Category category) throws MyException, Exception;

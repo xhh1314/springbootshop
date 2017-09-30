@@ -33,10 +33,10 @@ import shop.dao.UserDao;
 import shop.dao.impl.jparepository.OrderItemRepository;
 import shop.dao.impl.jparepository.ProductPropertyValueRepository;
 import shop.dao.impl.jparepository.SubdivideRepository;
+import shop.manager.util.GetUUID;
+import shop.manager.util.OrderCode;
 import shop.service.OrderService;
 import shop.service.ProductService;
-import shop.util.GetUUID;
-import shop.util.OrderCode;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.NONE,classes=ShopApplication.class)

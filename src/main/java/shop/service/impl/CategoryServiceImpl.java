@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.bean.Category;
 import shop.dao.CategoryDao;
-import shop.exception.MyException;
+import shop.manager.exception.MyException;
+import shop.manager.util.GetUUID;
 import shop.service.CategoryService;
-import shop.util.GetUUID;
 
 @Service("categoryService")
 @Scope("singleton")

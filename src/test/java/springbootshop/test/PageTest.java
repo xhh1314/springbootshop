@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import shop.ShopApplication;
 import shop.bean.extend.ProductPropertyValue;
+import shop.manager.util.Page;
 import shop.service.PropertyValueService;
-import shop.util.Page;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.NONE,classes=ShopApplication.class)
